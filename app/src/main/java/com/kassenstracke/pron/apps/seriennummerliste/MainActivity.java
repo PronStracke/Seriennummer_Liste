@@ -38,9 +38,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,30 +98,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //setContentView(R.layout.main);
-        //try {
-        //    Button scanner = (Button)findViewById(R.id.scanner);
-        //    scanner.setOnClickListener(new View.OnClickListener() {
-        //        public void onClick(View v) {
-        //            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-        //            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-        //            startActivityForResult(intent, 0);
-        //        }
-        //    });
-        //
-        //    Button scanner2 = (Button)findViewById(R.id.scanner2);
-        //    scanner2.setOnClickListener(new View.OnClickListener() {
-        //        public void onClick(View v) {
-        //            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-        //            // intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
-        //            startActivityForResult(intent, 0);
-        //        }
-        //    });
-        //} catch (ActivityNotFoundException anfe) {
-        //    Log.e("onCreate", "Scanner not found", anfe);
-        //}
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -325,15 +305,21 @@ public class MainActivity extends AppCompatActivity {
 
             Paint paint = new Paint();
             paint.setColor(Color.BLACK);
-            paint.setTextSize(40);
-            canvas.drawText(sTyp, leftMargin, titleBaseLine, paint);
-            aktuelleZeile+=40;
             paint.setTextSize(20);
+
+            GregorianCalendar now = new GregorianCalendar();
+            DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+
+            String sTitel = sTyp + " vom " + df.format(now.getTime());
+            canvas.drawText(sTitel, leftMargin, titleBaseLine, paint);
+            aktuelleZeile+=40;
+            paint.setTextSize(14);
             canvas.drawText("Seriennummern:", leftMargin, aktuelleZeile, paint);
             aktuelleZeile+=25;
-            paint.setTextSize(14);
+            paint.setTextSize(10);
             for (int i=0; i<listAdapter.getCount(); i++){
-                canvas.drawText(listAdapter.getItem(i), leftMargin, aktuelleZeile, paint);
+                String sPos = Integer.toString(i+1);
+                canvas.drawText("Pos. " + sPos + " : " + listAdapter.getItem(i), leftMargin, aktuelleZeile, paint);
                 aktuelleZeile+=20;
             }
         }
