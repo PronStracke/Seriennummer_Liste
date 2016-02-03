@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayDeque;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView mainListView;
     private ArrayAdapter<String> listAdapter;
+
+    private int iTyp = 0;
+    private String sTyp = "Liste";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +41,16 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> noList = new ArrayList<String>();
         noList.addAll(Arrays.asList(nos));
 
-        listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, noList);
+        listAdapter = new ArrayAdapter<>(this, R.layout.simplerow, noList);
 
         listAdapter.add("345");
 
         mainListView.setAdapter(listAdapter);
+
+        listAdapter.clear();
+
+        TextView myTitel = (TextView) findViewById(R.id.textView);
+        myTitel.setText(sTyp);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,8 +112,30 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if(id==R.id.action_set_wareneingang){
+            iTyp = getResources().getInteger(R.integer.typ_wareneingang);
+            sTyp = getResources().getString(R.string.typ_wareneingang);
+            TextView myTitel = (TextView) findViewById(R.id.textView);
+            myTitel.setText(sTyp);
+            return true;
+        }
+
+        if(id==R.id.action_set_lieferschein){
+            iTyp = getResources().getInteger(R.integer.typ_lieferschein);
+            sTyp = getResources().getString(R.string.typ_lieferschein);
+            TextView myTitel = (TextView) findViewById(R.id.textView);
+            myTitel.setText(sTyp);
+            return true;
+        }
+
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        //if (id == R.id.action_settings) {
+        //    return true;
+        //}
+
+
+        if(id==R.id.action_do_print){
+            // Do some printing...
             return true;
         }
 

@@ -10,9 +10,21 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_set_wareneingang"
+        android:orderInCategory="40"
+        android:title="Wareneingang"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_set_lieferschein"
+        android:orderInCategory="41"
+        android:title="Lieferschein"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_do_print"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Drucken..."
         app:showAsAction="never" />
 
     <item

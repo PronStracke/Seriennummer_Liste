@@ -2,4 +2,7 @@
     <string name="app_name">Seriennummer Liste</string>
     <string name="action_settings">Settings</string>
     <string name="hello">Beispiel Scanner App</string>
+    <string name="typ">Liste</string>
+    <string name="typ_wareneingang">Wareneingang</string>
+    <string name="typ_lieferschein">Lieferschein</string>
 </resources>
