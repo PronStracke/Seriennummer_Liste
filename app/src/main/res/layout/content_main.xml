@@ -12,10 +12,20 @@
     tools:context="com.kassenstracke.pron.apps.seriennummerliste.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:text="@string/typ"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:id="@+id/textView" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mainListView"
-        >
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView">
     </ListView>
 </RelativeLayout>
